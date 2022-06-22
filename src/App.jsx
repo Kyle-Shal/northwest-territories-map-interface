@@ -11,6 +11,7 @@ const geojson = {
   ]
 };
 
+
 const layerStyle = {
   id: 'point',
   type: 'fill',
