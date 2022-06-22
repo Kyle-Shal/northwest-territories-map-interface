@@ -31,7 +31,7 @@ function App() {
       mapStyle="mapbox://styles/mapbox/streets-v9"
       mapboxAccessToken='pk.eyJ1Ijoia3lsZS1zaGFsIiwiYSI6ImNsNG9qOWdlODA0MGMzY25vNHZ6M3IyOWUifQ.A3wEO8a8heSNUkhDKOeHYA'
     >
-    <Source id="my-data" type="geojson" data={"public/northwest_territories_data.geojson"}>
+    <Source id="my-data" type="geojson" data={"./public/northwest_territories_data.geojson"}>
         <Layer {...layerStyle} />
       </Source>
   </Map>
