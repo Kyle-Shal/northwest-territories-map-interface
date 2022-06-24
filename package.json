@@ -8,6 +8,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@turf/turf": "^6.5.0",
     "mapbox-gl": "^2.9.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
