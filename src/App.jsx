@@ -3,6 +3,7 @@ import * as React from "react";
 import Map, { Source, Layer } from "react-map-gl";
 import * as turf from "@turf/turf";
 import nwtData from "./northwest_territories_data.json";
+import diffData from "./difference.json";
 
 console.log({ nwtData });
 
@@ -14,7 +15,7 @@ const maskLayer = {
   type: "fill",
   paint: {
     "fill-color": "white",
-    "fill-opacity": 0.999,
+    "fill-opacity": 0.3,
   },
 };
 
@@ -22,7 +23,9 @@ const layerStyle = {
   id: "point",
   type: "fill",
   paint: {
-    "fill-color": "#007cbf",
+    "fill-color": "transparent",
+    "fill-opacity": 1.0,
+    "fill-outline-color": "#fff",
   },
 };
 
@@ -45,11 +48,9 @@ const layer = {
 };
 const nwtBbox = turf.bbox(nwtData);
 const nwtBboxPolygon = turf.bboxPolygon(nwtBbox);
-const bufferednwtBboxPolygon = turf.buffer(nwtBboxPolygon, 20);
-const buffedNwtBbox = turf.bbox(bufferednwtBboxPolygon);
+const bufferedNwtBboxPolygon = turf.buffer(nwtBboxPolygon, 20);
+const buffedNwtBbox = turf.bbox(bufferedNwtBboxPolygon);
 const bbox = buffedNwtBbox;
-
-// const mask = turf.difference(nwtBboxPolygon, nwtBboxPolygon);
 
 function App() {
   return (
@@ -67,14 +68,7 @@ function App() {
       <Source id="my-data" type="geojson" data={nwtData}>
         <Layer {...layerStyle} />
       </Source>
-
-      <Source
-        key={sourceId}
-        id={sourceId}
-        type="raster"
-        tiles={[mapboxUrl]}
-        bounds={nwtBbox}
-      >
+      <Source key={sourceId} id={sourceId} type="raster" tiles={[mapboxUrl]}>
         <Layer
           key={layerId}
           id={layerId}
@@ -88,6 +82,6 @@ function App() {
 
 export default App;
 
-// <Source id="mask" type="geojson" data={mask}>
-// <Layer {...maskLayer} />
-// </Source>
+// <Source id="my-data" type="geojson" data={diffData}>
+//         <Layer {...maskLayer} />
+//       </Source>
