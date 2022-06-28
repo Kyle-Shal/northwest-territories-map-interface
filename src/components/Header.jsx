@@ -10,22 +10,24 @@ function Header() {
       align="center"
       justify="space-between"
       wrap="wrap"
-      padding={5}
       bg="#005DA6"
+      height="full"
+      px={4}
       color="white"
     >
       <Flex align="center" mr={5}>
-        <Heading as="h1" size="lg">
+        <Heading as="h1" size="md">
           Northwest Territories
         </Heading>
       </Flex>
-
-      <Box width="100px">
-        <OpacitySlider />
-      </Box>
-      <Box width="100px">
-        <SatelliteLayerSelector />
-      </Box>
+      <Flex alignItems="center" justifyContent="center" gap={4}>
+        <Box width="100px">
+          <OpacitySlider />
+        </Box>
+        <Box width="100px">
+          <SatelliteLayerSelector />
+        </Box>
+      </Flex>
     </Flex>
   );
 }

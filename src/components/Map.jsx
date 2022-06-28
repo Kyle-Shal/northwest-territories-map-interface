@@ -2,7 +2,7 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import * as React from "react";
 import Map, { Source, Layer } from "react-map-gl";
 import * as turf from "@turf/turf";
-import nwtData from "../northwest_territories_data.json";
+import nwtData from "../northwest_territories_rivers.json";
 // import diffData from "../difference.json";
 
 // import RasterLayer from './components/RasterLayer';
