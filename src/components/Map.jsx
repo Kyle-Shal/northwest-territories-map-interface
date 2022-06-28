@@ -3,7 +3,7 @@ import * as React from "react";
 import Map, { Source, Layer } from "react-map-gl";
 import * as turf from "@turf/turf";
 import nwtData from "../northwest_territories_data.json";
-import diffData from "../difference.json";
+// import diffData from "../difference.json";
 
 // import RasterLayer from './components/RasterLayer';
 
@@ -54,12 +54,13 @@ function MapLayers() {
   return (
     <Map
       initialViewState={{
+        width: "100%",
+        height: "100%",
         longitude: -100,
         latitude: 40,
         zoom: 3.5,
       }}
       maxBounds={bbox}
-      style={{ width: "100vw", height: "100vh" }}
       mapStyle="mapbox://styles/mapbox/light-v10"
       mapboxAccessToken="pk.eyJ1Ijoia3lsZS1zaGFsIiwiYSI6ImNsNG9qOWdlODA0MGMzY25vNHZ6M3IyOWUifQ.A3wEO8a8heSNUkhDKOeHYA"
     >
