@@ -21,12 +21,8 @@ function Header({ value, onChange }) {
         </Heading>
       </Flex>
       <Flex alignItems="center" justifyContent="center" gap={4}>
-        <Box width="100px">
-          <OpacitySlider />
-        </Box>
-        <Box width="100px">
-          <SatelliteLayerSelector value={value} onChange={onChange} />
-        </Box>
+        {/*<OpacitySlider />*/}
+        <SatelliteLayerSelector value={value} onChange={onChange} />
       </Flex>
     </Flex>
   );

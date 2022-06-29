@@ -7,7 +7,7 @@ import {
 
 function OpacitySlider() {
   return (
-    <Slider aria-label="slider-ex-1" defaultValue={30}>
+    <Slider aria-label="slider-ex-1" defaultValue={30} minW="4rem">
       <SliderTrack>
         <SliderFilledTrack />
       </SliderTrack>

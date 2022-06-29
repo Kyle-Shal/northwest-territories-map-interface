@@ -32,7 +32,7 @@ const sensors = {
     id: "sentinel-1",
     label: "Sentinel 1",
     type: "wmts",
-    url: `https://services.sentinel-hub.com/ogc/wms/6179cd9a-6ff5-43a5-8f01-8aef07e9f211?showLogo=false&service=WMTS&request=GetMap&layers=S1-DB-HH3&styles=&format=image%2Fpng&transparent=true&version=1.1.1&name=Sentinel-1&maxcc=100&height=512&width=512&srs=EPSG%3A3857&exceptions=BLANK&bbox={bbox-epsg-3857}&time=2019-09-01/2019-09-01`,
+    url: `https://services.sentinel-hub.com/ogc/wms/6179cd9a-6ff5-43a5-8f01-8aef07e9f211?showLogo=false&service=WMTS&request=GetMap&layers=S1-DB-HH3&styles=&format=image%2Fpng&transparent=true&version=1.1.1&name=Sentinel-1&maxcc=100&height=512&width=512&srs=EPSG%3A3857&exceptions=BLANK&bbox={bbox-epsg-3857}&time=2020-12-01/2020-12-01`,
   },
   "sentinel-2": {
     id: "sentinel-2",
@@ -48,38 +48,13 @@ const bufferedNwtBboxPolygon = turf.buffer(nwtBboxPolygon, 20);
 const buffedNwtBbox = turf.bbox(bufferedNwtBboxPolygon);
 const bbox = buffedNwtBbox;
 
-function useSource({ map, url, id }) {
-  useEffect(() => {
-    const source = map.getSource(id);
-    if (source) {
-      // Update source url and repaint
-      // https://github.com/mapbox/mapbox-gl-js/issues/2941#issuecomment-518631078
-      source.tiles = [url];
-      console.log({ map });
-      console.log(map.style);
-      map.style.sourceCaches[id].clearTiles();
-      map.style.sourceCaches[id].update(map.transform);
-      map.triggerRepaint();
-    }
-  }, [url, map, id]);
-}
-
-function SentinelSource({ value }) {
-  const { current: map } = useMap();
-
-  const defaultUrl = () => {
-    sensors["sentinel-2"].url;
-  };
-  const url = sensors[value].url ? sensors[value].url : defaultUrl;
-  const sourceId = "satellite";
+function SentinelSource({ sourceId, url }) {
   const layerId = `${sourceId}-layer`;
 
   const layer = {
     type: "raster",
     "source-layer": sourceId,
   };
-
-  useSource({ map, url, id: sourceId });
 
   return (
     <Source key={sourceId} id={sourceId} type="raster" tiles={[url]}>
@@ -107,10 +82,21 @@ function MapLayers({ value }) {
       mapStyle="mapbox://styles/mapbox/light-v10"
       mapboxAccessToken="pk.eyJ1Ijoia3lsZS1zaGFsIiwiYSI6ImNsNG9qOWdlODA0MGMzY25vNHZ6M3IyOWUifQ.A3wEO8a8heSNUkhDKOeHYA"
     >
+      {value === "sentinel-1" && (
+        <SentinelSource
+          sourceId={sensors["sentinel-1"].id}
+          url={sensors["sentinel-1"].url}
+        />
+      )}
+      {value === "sentinel-2" && (
+        <SentinelSource
+          sourceId={sensors["sentinel-2"].id}
+          url={sensors["sentinel-2"].url}
+        />
+      )}
       <Source id="my-data" type="geojson" data={nwtData}>
         <Layer {...layerStyle} />
       </Source>
-      <SentinelSource value={value} />
     </Map>
   );
 }
