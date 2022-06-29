@@ -1,5 +1,5 @@
 import { Grid, GridItem } from "@chakra-ui/react";
-import * as React from "react";
+import React, { useState } from "react";
 import Header from "./components/Header";
 import MapLayers from "./components/Map";
 // import RasterLayer from './components/RasterLayer';
@@ -7,6 +7,12 @@ import MapLayers from "./components/Map";
 import "./App.css";
 
 function App() {
+  const [value, setValue] = useState("sentinel-1");
+
+  function handleLayerChange(event) {
+    setValue(event.target.value);
+  }
+
   return (
     <Grid
       height="full"
@@ -15,10 +21,10 @@ function App() {
       gridTemplateRows={"4rem 1fr"}
     >
       <GridItem area={"header"}>
-        <Header />
+        <Header value={value} onChange={handleLayerChange} />
       </GridItem>
       <GridItem area={"main"}>
-        <MapLayers />
+        <MapLayers value={value} />
       </GridItem>
     </Grid>
   );

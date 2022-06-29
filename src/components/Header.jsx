@@ -3,7 +3,7 @@ import { Box, Heading, Flex, Button } from "@chakra-ui/react";
 import OpacitySlider from "./OpacitySlider";
 import SatelliteLayerSelector from "./SatelliteLayerSelector";
 
-function Header() {
+function Header({ value, onChange }) {
   return (
     <Flex
       as="nav"
@@ -25,7 +25,7 @@ function Header() {
           <OpacitySlider />
         </Box>
         <Box width="100px">
-          <SatelliteLayerSelector />
+          <SatelliteLayerSelector value={value} onChange={onChange} />
         </Box>
       </Flex>
     </Flex>

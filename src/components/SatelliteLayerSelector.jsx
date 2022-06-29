@@ -1,10 +1,17 @@
 import { ChakraProvider, Select } from "@chakra-ui/react";
 
-function SatelliteLayerSelector() {
+function SatelliteLayerSelector({ value, onChange }) {
   return (
-    <Select bg="white" color="black" variant="filled" placeholder="Layer">
-      <option value="option1">Sentinel-1</option>
-      <option value="option2">Sentinel-2</option>
+    <Select
+      value={value}
+      onChange={onChange}
+      bg="white"
+      color="black"
+      variant="filled"
+      placeholder="Layer"
+    >
+      <option value="sentinel-1">Sentinel-1</option>
+      <option value="sentinel-2">Sentinel-2</option>
     </Select>
   );
 }
