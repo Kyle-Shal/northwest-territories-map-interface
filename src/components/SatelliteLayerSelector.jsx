@@ -8,7 +8,6 @@ function SatelliteLayerSelector({ value, onChange }) {
       bg="white"
       color="black"
       variant="filled"
-      placeholder="Layer"
       minW="8rem"
     >
       <option value="sentinel-1">Sentinel-1</option>
