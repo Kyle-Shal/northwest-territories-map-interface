@@ -8,9 +8,14 @@ import "./App.css";
 
 function App() {
   const [value, setValue] = useState("sentinel-1");
+  const [opacityValue, setOpacityVal] = useState(50);
 
   function handleLayerChange(event) {
     setValue(event.target.value);
+  }
+
+  function handleOpacityChange(value) {
+    setOpacityVal(value);
   }
 
   return (
@@ -21,10 +26,15 @@ function App() {
       gridTemplateRows={"4rem 1fr"}
     >
       <GridItem area={"header"}>
-        <Header value={value} onChange={handleLayerChange} />
+        <Header
+          value={value}
+          onChange={handleLayerChange}
+          opacityValue={opacityValue}
+          onOpacityChange={handleOpacityChange}
+        />
       </GridItem>
       <GridItem area={"main"}>
-        <MapLayers value={value} />
+        <MapLayers value={value} opacityValue={opacityValue} />
       </GridItem>
     </Grid>
   );

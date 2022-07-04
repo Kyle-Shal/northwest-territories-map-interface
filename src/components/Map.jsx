@@ -21,7 +21,7 @@ const sensors = {
 };
 
 const layerStyle = {
-  id: "point",
+  id: "nwt-data-layer",
   type: "fill",
   paint: {
     "fill-color": "transparent",
@@ -36,22 +36,31 @@ const bufferedNwtBboxPolygon = turf.buffer(nwtBboxPolygon, 20);
 const buffedNwtBbox = turf.bbox(bufferedNwtBboxPolygon);
 const bbox = buffedNwtBbox;
 
-function SentinelSource({ sourceId, url }) {
+function SentinelSource({ sourceId, url, opacityValue }) {
+  const { current: map } = useMap();
+
   const layerId = `${sourceId}-layer`;
+  var opacityVal = opacityValue / 100;
+  console.log(opacityVal);
+
+  useEffect(() => {
+    map.getMap().setPaintProperty(layerId, "raster-opacity", opacityValue);
+  }, [opacityValue]);
 
   const layer = {
     type: "raster",
     "source-layer": sourceId,
+    "raster-opacity": 0.1,
   };
 
   return (
     <Source key={sourceId} id={sourceId} type="raster" tiles={[url]}>
-      <Layer key={layerId} id={layerId} {...layer} />
+      <Layer beforeId="nwt-data-layer" key={layerId} id={layerId} {...layer} />
     </Source>
   );
 }
 
-function MapLayers({ value }) {
+function MapLayers({ value, opacityValue }) {
   return (
     <Map
       initialViewState={{
@@ -65,21 +74,23 @@ function MapLayers({ value }) {
       mapStyle="mapbox://styles/mapbox/satellite-v9"
       mapboxAccessToken="pk.eyJ1Ijoia3lsZS1zaGFsIiwiYSI6ImNsNG9qOWdlODA0MGMzY25vNHZ6M3IyOWUifQ.A3wEO8a8heSNUkhDKOeHYA"
     >
+      <Source id="nwt-data" type="geojson" data={nwtData}>
+        <Layer {...layerStyle} />
+      </Source>
       {value === "sentinel-1" && (
         <SentinelSource
           sourceId={sensors["sentinel-1"].id}
           url={sensors["sentinel-1"].url}
+          opacityValue={opacityValue}
         />
       )}
       {value === "sentinel-2" && (
         <SentinelSource
           sourceId={sensors["sentinel-2"].id}
           url={sensors["sentinel-2"].url}
+          opacityValue={opacityValue}
         />
       )}
-      <Source id="my-data" type="geojson" data={nwtData}>
-        <Layer {...layerStyle} />
-      </Source>
     </Map>
   );
 }
