@@ -9,7 +9,7 @@ import DatePicker from "./components/DatePicker";
 
 function App() {
   const [value, setValue] = useState("sentinel-1");
-  const [date, setDate] = useState("2022-07-01");
+  const [date, setDate] = useState("2020-10-18");
 
   function handleLayerChange(event) {
     setValue(event.target.value);
@@ -40,7 +40,7 @@ function App() {
         >
           <DatePicker value={date} onChange={handleDateChange} />
         </Box>
-        <MapLayers value={value} />
+        <MapLayers value={value} date={date} />
       </GridItem>
     </Grid>
   );
