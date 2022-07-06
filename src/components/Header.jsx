@@ -1,7 +1,8 @@
 import React from "react";
-import { Box, Heading, Flex, Button } from "@chakra-ui/react";
+import { Heading, Flex, Divider, Text, Stack } from "@chakra-ui/react";
 import OpacitySlider from "./OpacitySlider";
 import SatelliteLayerSelector from "./SatelliteLayerSelector";
+import logo from "../logo.png";
 
 function Header({ value, onChange }) {
   return (
@@ -16,9 +17,12 @@ function Header({ value, onChange }) {
       color="white"
     >
       <Flex align="center" mr={5}>
-        <Heading as="h1" size="md">
-          Northwest Territories
-        </Heading>
+        <img src={logo} alt="logo" width={125}></img>
+        <Stack direction="row" h="50px" p={4}>
+          <Heading as="h1" size="md">
+            NORTHWEST TERRITORIES | {value.toUpperCase()}
+          </Heading>{" "}
+        </Stack>
       </Flex>
       <Flex alignItems="center" justifyContent="center" gap={4}>
         {/*<OpacitySlider />*/}
