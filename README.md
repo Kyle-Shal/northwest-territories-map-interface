@@ -2,7 +2,7 @@
 
 A vite + react based web application that uses mapbox-gl to display a map for the northwest territories region using raster layers
 
-## (Storybook)[https://storybook.js.org/]
+## [Storybook](https://storybook.js.org/)
 Install dependencies:
 ```shell
 npm install
