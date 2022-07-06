@@ -40,7 +40,7 @@ function App() {
         >
           <DatePicker value={date} onChange={handleDateChange} />
         </Box>
-        <MapLayers value={value} />
+        <MapLayers value={value} date={date} />
       </GridItem>
     </Grid>
   );

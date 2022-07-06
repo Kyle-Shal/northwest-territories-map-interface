@@ -5,21 +5,6 @@ import * as turf from "@turf/turf";
 import nwtData from "../northwest_territories_rivers.json";
 // import diffData from "../difference.json";
 
-const sensors = {
-  "sentinel-1": {
-    id: "sentinel-1",
-    label: "Sentinel 1",
-    type: "wmts",
-    url: `https://services.sentinel-hub.com/ogc/wms/6179cd9a-6ff5-43a5-8f01-8aef07e9f211?showLogo=false&service=WMTS&request=GetMap&layers=S1-DB-HH3&styles=&format=image%2Fpng&transparent=true&version=1.1.1&name=Sentinel-1&maxcc=100&height=512&width=512&srs=EPSG%3A3857&exceptions=BLANK&bbox={bbox-epsg-3857}&time=2020-12-01/2020-12-01`,
-  },
-  "sentinel-2": {
-    id: "sentinel-2",
-    label: "Sentinel 2",
-    type: "wmts",
-    url: `https://services.sentinel-hub.com/ogc/wms/318be53b-974b-4918-8f5f-53ba0a37079c?showLogo=false&service=WMTS&request=GetMap&layers=TRUE_COLOR&styles=&format=image%2Fpng&transparent=true&version=1.1.1&name=Sentinel-2&maxcc=60&height=512&width=512&srs=EPSG%3A3857&exceptions=BLANK&bbox={bbox-epsg-3857}&time=2019-09-01/2019-09-01`,
-  },
-};
-
 const layerStyle = {
   id: "nwt-data-layer",
   type: "fill",
@@ -51,7 +36,21 @@ function SentinelSource({ sourceId, url }) {
   );
 }
 
-function MapLayers({ value }) {
+function MapLayers({ value, date }) {
+  const sensors = {
+    "sentinel-1": {
+      id: "sentinel-1",
+      label: "Sentinel 1",
+      type: "wmts",
+      url: `https://services.sentinel-hub.com/ogc/wms/6179cd9a-6ff5-43a5-8f01-8aef07e9f211?showLogo=false&service=WMTS&request=GetMap&layers=S1-DB-HH3&styles=&format=image%2Fpng&transparent=true&version=1.1.1&name=Sentinel-1&maxcc=100&height=512&width=512&srs=EPSG%3A3857&exceptions=BLANK&bbox={bbox-epsg-3857}&time=2020-12-01/2020-12-01`,
+    },
+    "sentinel-2": {
+      id: "sentinel-2",
+      label: "Sentinel 2",
+      type: "wmts",
+      url: `https://services.sentinel-hub.com/ogc/wms/318be53b-974b-4918-8f5f-53ba0a37079c?showLogo=false&service=WMTS&request=GetMap&layers=TRUE_COLOR&styles=&format=image%2Fpng&transparent=true&version=1.1.1&name=Sentinel-2&maxcc=60&height=512&width=512&srs=EPSG%3A3857&exceptions=BLANK&bbox={bbox-epsg-3857}&time=${date}/${date}`,
+    },
+  };
   return (
     <Map
       initialViewState={{
