@@ -18,8 +18,11 @@ function useSource ({
       source.tiles = [url]
       // sourceCaches moved in recent mapbox-gl version:
       // https://github.com/urbica/react-map-gl/issues/343
+      // Also, `other:` prepended to sourceCache id
       map.style._sourceCaches[`other:${id}`].clearTiles()
       map.style._sourceCaches[`other:${id}`].update(map.transform)
+
+      // Not sure if this is needed
       mapContext.triggerRepaint()
       
       // Save source to window for dev convenience

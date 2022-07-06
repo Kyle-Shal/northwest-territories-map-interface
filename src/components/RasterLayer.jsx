@@ -8,7 +8,7 @@ import {
 
 
 function RasterLayer ({
-  id = 'mosaic',
+  id = 'raster',
   rasterUrl = defaultRasterUrl,
   type = 'raster',
   debug = false
