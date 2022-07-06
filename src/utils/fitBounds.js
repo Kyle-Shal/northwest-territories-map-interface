@@ -6,7 +6,7 @@ function fitBounds ({
 }) {
   const width = window.innerWidth / divisor
   const height = window.innerHeight / divisor
-  console.log(bounds, width, height)
+
   const {
     center: [longitude, latitude],
     zoom

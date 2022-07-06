@@ -1,6 +1,6 @@
 import React from 'react'
 import MapGL from 'react-map-gl'
-// import 'mapbox-gl/dist/mapbox-gl.css'
+import 'mapbox-gl/dist/mapbox-gl.css'
 
 import { mapboxAccessToken } from '../config'
 

@@ -20,12 +20,7 @@ function RasterLayer ({
 
   const { current: mapContext } = useMap()
   const map = mapContext.getMap()
-  // const { current: map } = useMap()
-  // m.style._sourceCaches['other:mosaic']
   
-  console.log({map})
-  window.map = map
-  window.mapContext = mapContext
   useSource({ mapContext, url: rasterUrl, id })
 
   return (
