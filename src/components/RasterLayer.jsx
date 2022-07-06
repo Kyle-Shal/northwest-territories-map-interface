@@ -19,7 +19,6 @@ function RasterLayer ({
   }
 
   const { current: mapContext } = useMap()
-  const map = mapContext.getMap()
   
   useSource({ mapContext, url: rasterUrl, id })
 
