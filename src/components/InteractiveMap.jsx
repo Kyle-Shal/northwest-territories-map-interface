@@ -19,7 +19,6 @@ function InteractiveMap ({
   },
   children
 }) {
-  console.log({onMove})
   return (
     <MapGL
       {...viewState}

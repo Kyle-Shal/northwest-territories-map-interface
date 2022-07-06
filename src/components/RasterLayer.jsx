@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { Source, Layer, _MapContext as MapContext } from 'react-map-gl'
+import { Source, Layer, useMap } from 'react-map-gl'
 
 import useSource from '../hooks/useSource'
 import {
@@ -10,6 +10,7 @@ import {
 function RasterLayer ({
   id = 'mosaic',
   rasterUrl = defaultRasterUrl,
+  type = 'raster',
   debug = false
 }) {
   if (debug) {
@@ -17,12 +18,15 @@ function RasterLayer ({
     console.log({ rasterUrl })
   }
 
-  const { map } = useContext(MapContext)
-  useSource({ map, url: rasterUrl, id })
-
-  if (!headers['Authorization']) {
-    return null
-  }
+  const { current: mapContext } = useMap()
+  const map = mapContext.getMap()
+  // const { current: map } = useMap()
+  // m.style._sourceCaches['other:mosaic']
+  
+  console.log({map})
+  window.map = map
+  window.mapContext = mapContext
+  useSource({ mapContext, url: rasterUrl, id })
 
   return (
     <Source id={id} type={type} tiles={[rasterUrl]}>
