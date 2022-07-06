@@ -1,6 +1,6 @@
 import "mapbox-gl/dist/mapbox-gl.css";
 import React from "react";
-import Map, { Source, Layer } from "react-map-gl";
+import Map, { Source, Layer, NavigationControl } from "react-map-gl";
 import * as turf from "@turf/turf";
 import nwtData from "../northwest_territories_rivers.json";
 // import diffData from "../difference.json";
@@ -106,6 +106,7 @@ function MapLayers({ value, date }) {
           date={date}
         />
       )}
+      <NavigationControl position="top-left" />
     </Map>
   );
 }

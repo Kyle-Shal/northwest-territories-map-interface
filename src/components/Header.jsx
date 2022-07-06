@@ -17,7 +17,7 @@ function Header({ value, onChange }) {
       color="white"
     >
       <Flex align="center" mr={5}>
-        <img src={logo} alt="logo" width={150}></img>
+        <img src={logo} alt="logo" width={125}></img>
         <Stack direction="row" h="50px" p={4}>
           <Heading as="h1" size="md">
             NORTHWEST TERRITORIES | {value.toUpperCase()}
