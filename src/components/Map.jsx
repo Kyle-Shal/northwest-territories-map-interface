@@ -7,11 +7,10 @@ import nwtData from "../northwest_territories_rivers.json";
 
 const layerStyle = {
   id: "nwt-data-layer",
-  type: "fill",
+  type: "line",
   paint: {
-    "fill-color": "transparent",
-    "fill-opacity": 1.0,
-    "fill-outline-color": "#fff",
+    "line-color": "rgba(255, 0, 0, 1)",
+    "line-width": 4,
   },
 };
 
@@ -25,8 +24,6 @@ function SentinelSource({ sourceId: inputSourceId, url, date }) {
   const sourceId = `${inputSourceId}-${date}`;
 
   const layerId = `${sourceId}-layer`;
-  console.log(date);
-
   /*
 
   useEffect(() => {
@@ -106,6 +103,7 @@ function MapLayers({ value, date }) {
           date={date}
         />
       )}
+      {value === "basemap" && console.log("basemap")}
       <NavigationControl position="top-left" />
     </Map>
   );

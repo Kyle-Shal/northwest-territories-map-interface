@@ -10,6 +10,7 @@ function SatelliteLayerSelector({ value, onChange }) {
       variant="filled"
       minW="8rem"
     >
+      <option value="basemap">Basemap</option>
       <option value="sentinel-1">Sentinel-1</option>
       <option value="sentinel-2">Sentinel-2</option>
     </Select>
