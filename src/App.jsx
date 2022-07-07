@@ -10,7 +10,7 @@ import DatePicker from "./components/DatePicker";
 function App() {
   const [value, setValue] = useState("sentinel-1");
   const [date, setDate] = useState("2020-10-18");
-  const [opacityValue, setOpacity] = useState(50);
+  const [opacityValue, setOpacity] = useState(100);
 
   const [yy, mm, dd] = date.split("-");
   var dateLong = new Date(yy, mm, dd);
