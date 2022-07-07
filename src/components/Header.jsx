@@ -4,7 +4,7 @@ import OpacitySlider from "./OpacitySlider";
 import SatelliteLayerSelector from "./SatelliteLayerSelector";
 import logo from "../logo.png";
 
-function Header({ value, onChange }) {
+function Header({ value, onChange, opacityValue, onOpacityChange }) {
   return (
     <Flex
       as="nav"
@@ -25,7 +25,7 @@ function Header({ value, onChange }) {
         </Stack>
       </Flex>
       <Flex alignItems="center" justifyContent="center" gap={4}>
-        {/*<OpacitySlider />*/}
+        <OpacitySlider value={opacityValue} onChange={onOpacityChange} />
         <SatelliteLayerSelector value={value} onChange={onChange} />
       </Flex>
     </Flex>

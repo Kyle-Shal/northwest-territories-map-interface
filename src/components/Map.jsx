@@ -9,8 +9,8 @@ const layerStyle = {
   id: "nwt-data-layer",
   type: "line",
   paint: {
-    "line-color": "rgba(255, 0, 0, 1)",
-    "line-width": 4,
+    "line-color": "blue",
+    "line-width": 5,
   },
 };
 
@@ -20,35 +20,17 @@ const bufferedNwtBboxPolygon = turf.buffer(nwtBboxPolygon, 20);
 const buffedNwtBbox = turf.bbox(bufferedNwtBboxPolygon);
 const bbox = buffedNwtBbox;
 
-function SentinelSource({ sourceId: inputSourceId, url, date }) {
+function SentinelSource({ sourceId: inputSourceId, url, date, opacityValue }) {
+  const decimalOpacityVal = opacityValue / 100;
   const sourceId = `${inputSourceId}-${date}`;
-
   const layerId = `${sourceId}-layer`;
-  /*
-
-  useEffect(() => {
-    console.log("date has changed");
-    if (map.getSource(sourceId)) {
-      // Set the tile url to a cache-busting url (to circumvent browser caching behaviour):
-      map.getSource(sourceId).tiles = [
-        `http://some.url/{z}/{x}/{y}.pbf?dt=${Date.now()}`,
-      ];
-      // Remove the tiles for a particular source
-      map.style._sourceCaches[sourceId].clearTiles();
-      // Load the new tiles for the current viewport (map.transform -> viewport)
-      map.style.sourceCaches[sourceId].update(map.transform);
-      map.getStyle()._sourceCaches
-
-      // Force a repaint, so that the map will be repainted without you having to touch the map
-      map.triggerRepaint();
-    }
-  }, [date]);
-
-  */
 
   const layer = {
     type: "raster",
     "source-layer": sourceId,
+    paint: {
+      "raster-opacity": decimalOpacityVal,
+    },
   };
 
   return (
@@ -58,7 +40,7 @@ function SentinelSource({ sourceId: inputSourceId, url, date }) {
   );
 }
 
-function MapLayers({ value, date }) {
+function MapLayers({ value, date, opacityValue }) {
   const sensors = {
     "sentinel-1": {
       id: "sentinel-1",
@@ -94,6 +76,7 @@ function MapLayers({ value, date }) {
           sourceId={sensors["sentinel-1"].id}
           url={sensors["sentinel-1"].url}
           date={date}
+          opacityValue={opacityValue}
         />
       )}
       {value === "sentinel-2" && (
@@ -101,6 +84,7 @@ function MapLayers({ value, date }) {
           sourceId={sensors["sentinel-2"].id}
           url={sensors["sentinel-2"].url}
           date={date}
+          opacityValue={opacityValue}
         />
       )}
       {value === "basemap" && console.log("basemap")}

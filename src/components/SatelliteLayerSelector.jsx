@@ -1,4 +1,4 @@
-import { ChakraProvider, Select } from "@chakra-ui/react";
+import { Select } from "@chakra-ui/react";
 
 function SatelliteLayerSelector({ value, onChange }) {
   return (

@@ -5,9 +5,14 @@ import {
   SliderThumb,
 } from "@chakra-ui/react";
 
-function OpacitySlider() {
+function OpacitySlider({ value, onChange }) {
   return (
-    <Slider aria-label="slider-ex-1" defaultValue={30} minW="4rem">
+    <Slider
+      value={value}
+      onChange={onChange}
+      aria-label="slider-ex-1"
+      minW="4rem"
+    >
       <SliderTrack>
         <SliderFilledTrack />
       </SliderTrack>
